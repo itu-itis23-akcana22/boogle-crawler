@@ -2,6 +2,8 @@
 
 A simple web crawler and search engine built with Python, Flask and SQLite. Crawl websites to a configurable depth, index page content into letter-based files, and search through the index with relevance scoring. Built as an educational project.
 
+**GitHub Repository:** [itu-itis23-akcana22/boogle-crawler](https://github.com/itu-itis23-akcana22/boogle-crawler) 
+
 ---
 
 ## How It Works
