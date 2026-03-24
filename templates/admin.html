@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Boogle Admin — Start crawl jobs and monitor system status.">
+    <title>Boogle — Admin</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wide-container">
+        <!-- Top Bar -->
+        <nav class="top-bar">
+            <div class="top-bar-left">
+                <span class="top-bar-logo">Boogle</span>
+                <div class="top-bar-nav">
+                    <a href="/">Search</a>
+                    <a href="/admin" class="active">Admin</a>
+                </div>
+            </div>
+            <div class="status-indicator" id="globalStatus">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusLabel">Idle</span>
+            </div>
+        </nav>
+
+        <div class="admin-grid">
+            <!-- Start Crawl -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Start a Crawl</h2>
+                </div>
+                <div class="card-body">
+                    <form id="crawlForm">
+                        <div class="form-group">
+                            <label for="crawlUrl">Starting URL</label>
+                            <input type="url" class="form-input" id="crawlUrl" placeholder="https://example.com" required>
+                        </div>
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="crawlDepth">Crawl Depth</label>
+                                <input type="number" class="form-input" id="crawlDepth" min="0" max="10" value="2">
+                            </div>
+                            <div class="form-group">
+                                <label for="crawlMaxUrls">Max URLs to Visit</label>
+                                <input type="number" class="form-input" id="crawlMaxUrls" min="0" value="0" placeholder="0 = unlimited">
+                            </div>
+                        </div>
+                        <p class="form-hint">Set Max URLs to 0 for unlimited crawling.</p>
+                        <button type="submit" class="btn btn-primary" id="crawlBtn" style="width:100%">Start Crawl</button>
+                    </form>
+                    <div id="crawlMessage" class="message" style="display:none"></div>
+                </div>
+            </div>
+
+            <!-- System Status -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>System Status</h2>
+                    <span style="font-size:0.75rem;color:var(--text-muted)">Updates every 3s</span>
+                </div>
+                <div class="card-body">
+                    <div class="stats-row">
+                        <div class="stat-box">
+                            <div class="stat-number" id="totalPages">0</div>
+                            <div class="stat-label">Indexed</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" id="queueDepth">0</div>
+                            <div class="stat-label">Queue</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" id="activeCrawlers">0</div>
+                            <div class="stat-label">Crawlers</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" id="throttleStatus">No</div>
+                            <div class="stat-label">Throttled</div>
+                        </div>
+                    </div>
+
+                    <p class="section-title">Active Jobs</p>
+                    <div id="activeJobs" class="job-list">
+                        <p class="empty-text">No active jobs</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Session History -->
+            <div class="card admin-full">
+                <div class="card-header">
+                    <h2>Session History</h2>
+                </div>
+                <div class="card-body">
+                    <div id="sessionHistory" class="job-list">
+                        <p class="empty-text">No sessions yet</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clear All -->
+            <div class="card admin-full">
+                <div class="card-header">
+                    <h2>Danger Zone</h2>
+                </div>
+                <div class="card-body" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+                    <button type="button" class="btn btn-danger" id="clearAllBtn">Clear All Data</button>
+                    <span style="font-size:0.82rem;color:var(--text-muted)">Stops all crawlers, deletes the database, and removes the inverted index file.</span>
+                    <div id="clearMessage" class="message" style="display:none;width:100%"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            Boogle — By Abdullah Akcan & Claude Opus 4.6 (mostly Claude)
+        </footer>
+    </div>
+
+    <script src="/static/admin.js"></script>
+</body>
+</html>

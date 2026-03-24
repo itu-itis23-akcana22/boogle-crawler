@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Boogle — Search through crawled web pages.">
+    <title>Boogle</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Top Bar -->
+        <nav class="top-bar">
+            <div class="top-bar-left">
+                <span class="top-bar-logo">Boogle</span>
+                <div class="top-bar-nav">
+                    <a href="/" class="active">Search</a>
+                    <a href="/admin">Admin</a>
+                </div>
+            </div>
+            <div class="status-indicator" id="globalStatus">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusLabel">Idle</span>
+            </div>
+        </nav>
+
+        <!-- Search Hero -->
+        <div class="search-hero" id="searchHero">
+            <h1 class="search-hero-title">Boogle</h1>
+
+            <div class="search-bar-wrapper">
+                <span class="search-bar-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </span>
+                <input type="text" class="search-bar" id="searchInput" placeholder="Search the world..." autocomplete="off" autofocus>
+                <button class="search-bar-clear" id="clearBtn" type="button">&times;</button>
+                <button class="search-bar-go" id="searchBtn" type="button">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+
+                <!-- Autocomplete Dropdown -->
+                <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
+            </div>
+
+            <div class="search-buttons">
+                <button class="btn" id="luckyBtn" type="button">I don't feel so Lucky</button>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="results-area" id="resultsArea"></div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
